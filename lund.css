@@ -1,0 +1,123 @@
+@media (max-width: 780px) {
+    /* Adjust navbar for smaller screens */
+    .navbar {
+      display: flex
+;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .nav-links {
+        display: block; 
+        margin-right: 30px;
+        font-size: 0.9rem;
+        gap: 5px;
+        font-weight: 200;/* Hide nav links on small screens */
+    }
+    .cta-button{
+      display: none;
+    }
+
+
+    /* Adjust hero section */
+    .hero {
+        height: 300px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .grid{
+      margin-left: 150px;
+    }
+
+    .hero .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+.main-title{
+  font-size: 1.5rem;
+}
+.right h2{
+  font-size: 1.5rem;
+}
+.expertise-section h2{
+  font-size: 1.5rem;
+}
+.container h2{
+  font-size: 1.5rem;
+}
+    /* Adjust container layout */
+    .container1 {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .left, .right {
+        padding: 0;
+        text-align: center;
+    }
+
+    .feature-image {
+        margin-bottom: 20px;
+    }
+
+    /* Adjust grid layout */
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 15px;
+    }
+
+    /* Adjust expertise cards */
+    .expertise-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        
+        margin-bottom: 20px;
+    }
+
+    /* Adjust FAQ section */
+    .faq-container {
+        flex-direction: column;
+    }
+
+    .faq-left, .faq-right {
+       
+        text-align: center;
+    }
+
+    .faq-left h3, .faq-contact p {
+        margin-right: 0;
+    }
+
+    .faq-btn {
+        margin-top: 10px;
+    }
+
+    /* Adjust footer */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left, .footer-right {
+        margin: 0;
+    }
+
+    .footer-left img {
+        margin-left: 0;
+    }
+
+    .footer-right ul {
+        padding: 0;
+    }
+}

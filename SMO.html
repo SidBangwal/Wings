@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMO services</title>
+  <style>
+       /* ---------------- Global Styles ---------------- */
+   :root {
+    --primary: #4a6bff;
+    --secondary: #ff6b4a;
+    --dark: #333333;
+    --light: #f9f9f9;
+    --dark-bg: #0a0a0a;
+    --purple-primary: #6a0dad;
+    --purple-secondary: #9932cc;
+    --pink-accent: #ff1493;
+    --pink-light: #ff69b4;
+    --text-light: #ffffff;
+    --text-dark: #222222;
+    --gradient-bg: linear-gradient(135deg, #69676a, #070707);
+    --transition: all 0.3s ease;
+    --primary-hover: #3a5bef;
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #f9f9f9, #eef2ff);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+  
+  /* ---------------- Header and Navigation ---------------- */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    width: 100%;
+    transition: var(--transition);
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+  }
+  
+  .navbar.scrolled {
+    padding: 0.5rem 5%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    height: 120px;
+    transition: var(--transition);
+    transform-origin: left center;
+  }
+  
+  .navbar.scrolled .logo {
+    height: 80px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: var(--transition);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .cta-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+    z-index: -1;
+  }
+  
+  .cta-button:hover::before {
+    width: 100%;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(74, 107, 255, 0.5);
+  }
+  
+  .hamburger {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: var(--transition);
+    background-color: white;
+  }
+  
+  /* ---------------- Main Content ---------------- */
+  main {
+    margin-top: 60px;
+
+  }
+  
+  .main-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--dark);
+    background: linear-gradient(to right, var(--dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+  
+  .divider {
+    width: 300px;
+    height: 3px;
+    background: linear-gradient(to right, var(--dark), var(--primary));
+    border: none;
+    margin: 20px auto;
+  }
+  
+  .main-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+  }
+  
+  /* ---------------- Hero Section ---------------- */
+  .hero {
+    background-image: url(images/SMOpage.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 440px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: white;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    transform: translateX(0);
+    transition: var(--transition);
+  }
+  
+  .hero .btn {
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    display: inline-block;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
+  }
+  
+  .hero .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+    z-index: -1;
+  }
+  
+  .hero .btn:hover::before {
+    width: 100%;
+  }
+  
+  .hero .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(74, 107, 255, 0.5);
+  }
+  
+  /* ---------------- About Need Section ---------------- */
+  .about-need {
+    padding: 60px 20px;
+    background-color: var(--light);
+    text-align: center;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .about-need p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+  }
+  
+  /* ---------------- Container Section ---------------- */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+  
+  .container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    background-color: white;
+    transition: var(--transition);
+    overflow: hidden;
+  }
+  
+  .container1:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .left {
+    flex: 1;
+    padding-right: 30px;
+  }
+  
+  .feature-image {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+  }
+  
+  .feature-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .right {
+    flex: 1;
+    padding-left: 30px;
+  }
+  
+  .right h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--dark);
+    background: linear-gradient(to right, var(--dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .right p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+  }
+  
+  /* ---------------- Section Titles ---------------- */
+  .section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 60px 0 30px;
+    color: var(--dark);
+    background: linear-gradient(to right, var(--dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+  
+  .section-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  
+  /* ---------------- Grid Layout & Cards ---------------- */
+  .expertise-section h2 {
+    font-size: 2rem;
+    color: var(--dark);
+    background: linear-gradient(to right, var(--dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 60px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.expertise-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    transition: height 0.3s ease-in-out;
+}
+
+.card:hover::before {
+    height: 100%;
+    opacity: 0.2;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.smo-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #4c2cd6;
+}
+
+.card h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+    font-size: 1rem;
+}
+  
+  /* Feature Cards in Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  
+  .feature-card {
+    text-align: center;
+  }
+  
+  .feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    transition: var(--transition);
+  }
+  
+  .feature-card:hover i {
+    transform: scale(1.2) rotate(360deg);
+    color: var(--secondary);
+  }
+  
+  /* FAQ Section */
+  .faq-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      background-color: #f9f9f9;
+  }
+  
+  .faq-container {
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+  }
+  
+  /* Left Section */
+  .faq-left {
+      width: 40%;
+      margin-top: 60px;
+  }
+  
+  .faq-left h2 {
+    color: var(--dark);
+    background: linear-gradient(to right, var(--dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+      font-size: 34px;
+      margin-bottom: 10px;
+  }
+  
+  .faq-left h3 {
+      font-size: 18px;
+      color: #000;
+      font-weight: 500;
+      margin-top: 30px;
+      margin-right: 210px;
+      margin-bottom: 5px;
+  }
+  
+  .faq-contact p {
+      font-size: 16px;
+      color: #000;
+      margin-bottom: 10px;
+      margin-right: 240px;
+  }
+  
+  .faq-btn {
+      background: #1f0cb4;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+  }
+  
+  .faq-btn:hover {
+      background: #150aa3;
+  }
+  
+  /* Right Section */
+  .faq-right {
+      width: 55%;
+  }
+  
+  .faq-item {
+      border-bottom: 1px solid #717376;
+      padding: 15px 0;
+      cursor: pointer;
+  }
+  
+  .faq-question {
+      font-size: 18px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #000;
+  }
+  
+  .faq-icon {
+      font-size: 22px;
+      color: #0e0e0e;
+      font-weight: bold;
+  }
+  
+  .faq-answer {
+      font-size: 16px;
+      color: black;
+      margin-top: 10px;
+      display: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+      .faq-container {
+          flex-direction: column;
+          text-align: center;
+      }
+  
+      .faq-left, .faq-right {
+          width: 100%;
+      }
+  }
+  
+  /* Footer ---------------------------------------*/
+  footer {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #34495e;
+  }
+  
+  .footer-left {
+    flex: 1;
+    min-width: 250px;
+    margin-right: 110px;
+  }
+  
+  .footer-left img {
+    margin-bottom: 17px;
+    margin-left: 215px;
+    margin-top: 10px;
+  
+  }
+  
+  .footer-left p {
+    font-size: 15px;
+    line-height: 1.1;
+    color: white;
+  }
+  
+  /* Footer Right Section */
+  .footer-right {
+    flex: 1;
+    min-width: 200px;
+    margin-top: 56px;
+    margin-left: 55px;
+  }
+  
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-right ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #ecf0f1;
+  }
+  
+  .footer-right ul li:hover {
+    color: #0d28a1;
+    cursor: pointer;
+  }
+  
+  footer p{
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+  }
+  @media (max-width: 780px) {
+    /* Adjust navbar for smaller screens */
+    .navbar {
+      display: flex
+;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .nav-links {
+        display: block; 
+        margin-right: 30px;
+        font-size: 0.9rem;
+        gap: 5px;
+        font-weight: 200;/* Hide nav links on small screens */
+    }
+    .cta-button{
+      display: none;
+    }
+
+
+    /* Adjust hero section */
+    .hero {
+        height: 300px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .grid{
+      margin-left: 150px;
+    }
+
+    .hero .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+.main-title{
+  font-size: 1.5rem;
+}
+.right h2{
+  font-size: 1.5rem;
+}
+.expertise-section h2{
+  font-size: 1.5rem;
+}
+.container h2{
+  font-size: 1.5rem;
+}
+    /* Adjust container layout */
+    .container1 {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .left, .right {
+        padding: 0;
+        text-align: center;
+    }
+
+    .feature-image {
+        margin-bottom: 20px;
+    }
+
+    /* Adjust grid layout */
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 15px;
+    }
+
+    /* Adjust expertise cards */
+    .expertise-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        
+        margin-bottom: 20px;
+    }
+
+    /* Adjust FAQ section */
+    .faq-container {
+        flex-direction: column;
+    }
+
+    .faq-left, .faq-right {
+       
+        text-align: center;
+    }
+
+    .faq-left h3, .faq-contact p {
+        margin-right: 0;
+    }
+
+    .faq-btn {
+        margin-top: 10px;
+    }
+
+    /* Adjust footer */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left, .footer-right {
+        margin: 0;
+    }
+
+    .footer-left img {
+        margin-left: 0;
+    }
+
+    .footer-right ul {
+        padding: 0;
+    }
+}
+  </style>
+</head>
+<body>
+     <!-- Header Section -->
+     <header>
+        <nav class="navbar">
+            <img src="images/Logo2 (1).png" alt="Logo" class="logo animate__animated animate__fadeIn">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <button class="cta-button">Get Started</button>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1 class="main-title animate__animated animate__fadeIn">Social Media Optimization</h1>
+        <hr class="divider animate__animated animate__fadeIn">
+        <p class="main-subtitle animate__animated animate__fadeIn">By optimizing your social media presence through strategic Social Media Optimization (SMO) practices, you can increase your online reach, drive more engaged traffic, and ultimately, boost your business's credibility, conversions, and revenue.</p>
+
+        <!-- Hero Section with Background Image -->
+        <section class="hero">
+            <div class="hero-content animate__animated animate__fadeInUp">
+                <p>Let's boost your Social Media presence!</p>
+                <a href="#" class="btn">Let's Go</a>
+            </div>
+        </section>
+
+        <!-- Paragraph About Website Development Need -->
+        <section class="about-need">
+            <p class="animate__animated animate__fadeIn">
+                In today's fast-paced digital world, having a robust social media presence is crucial for businesses to stay connected with their audience. A well-crafted Social Media Optimization (SMO) strategy not only amplifies your brand's online visibility but also drives engaged followers, increases conversions, and elevates your brand's reputation. Let us help you elevate your social media game and reach new heights with our expert SMO services!            </p>
+        </section>
+
+        <!-- Container with Image and Text -->
+        <div class="container">
+            <div class="container1 animate__animated animate__fadeIn">
+                <div class="left">
+                    <img src="images/SMOpage2.jpg" width="620" alt="Website Development" class="feature-image">
+                </div>
+                <div class="right">
+                    <h2>Why You Need Social Media Optimization (SMO) Services</h2>
+                    <p>
+                        SMO helps your social media presence stand out in a crowded online landscape, making it more visible to potential customers. By optimizing your social media profiles and content for relevant keywords and hashtags, you can increase your online presence and reach a wider audience.                     </p>
+<p>SMO drives engaged followers to your social media profiles, increasing the chances of converting them into customers. By optimizing your social media content for specific keywords and hashtags, you can attract high-quality followers who are more likely to engage with your products or services.
+</p>                    
+                </div>
+            </div>
+        </div>  
+
+        <!-- Grid Layout -->
+        <div class="expertise-section">
+            <h2>Our Expertise in Social Media Optimization</h2>
+            <div class="expertise-cards">
+                <div class="card">
+                    <div class="smo-icon">📢</div>
+                    <h3>Social Media Strategy</h3>
+                    <p>We create powerful social media strategies to boost your brand's online presence and engagement.</p>
+                </div>
+                <div class="card">
+                    <div class="smo-icon">👥</div>
+                    <h3>Audience Engagement</h3>
+                    <p>We help engage with your audience through interactive content, increasing trust and brand loyalty</p>
+                </div>
+                <div class="card">
+                    <div class="smo-icon">📊</div>
+                    <h3>Performance Analytics</h3>
+                    <p>We analyze social media metrics to optimize performance and maximize your marketing ROI.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why choose us -->
+        <section class="why-choose-us">
+            <div class="container">
+                <h2 class="section-title animate__animated animate__fadeIn">Why We're The Right Choice?</h2>
+                <p class="section-subtitle animate__animated animate__fadeIn">We're Awarded as Best Website Development Company for What We Do:</p>
+
+                <div class="grid">
+                    <div class="card feature-card" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-clock"></i>
+                        <h3>On-Time Delivery</h3>
+                        <p>We respect your time and always ensure that your website is delivered on schedule, with no delays or quality compromises.</p>
+                    </div>
+
+                    <div class="card feature-card" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fas fa-award"></i>
+                        <h3>Commitment to Quality</h3>
+                        <p>We are committed to delivering top quality with attention to detail, earning industry recognition and client trust.</p>
+                    </div>
+
+                    <div class="card feature-card" data-aos="zoom-in" data-aos-delay="400">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Results That Matter</h3>
+                        <p>We focus on delivering results that fuel growth. Our websites increase your online presence, generating more sales & conversions.</p>
+                    </div>
+
+                    <div class="card feature-card" data-aos="zoom-in" data-aos-delay="600">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Proven Expertise</h3>
+                        <p>With 10+ years of experience & a strong portfolio, we deliver results that speak for themselves.</p>
+                    </div>          
+                </div>
+            </div>
+        </section>
+
+<!-- FAQs ------------------------------------------------------------------ -->
+
+<section class="faq-section">
+  <div class="faq-container">
+      <div class="faq-left">
+          <h2>Frequently Asked Questions</h2>
+          <h3>Your Questions, Answered</h3>
+          
+          <div class="faq-contact">
+              <p>Have More Queries?</p>
+              <button class="faq-btn">Ask Expert →</button>
+          </div>
+      </div>
+
+      <div class="faq-right">
+          <div class="faq-item">
+              <div class="faq-question">
+                What is Social Media Optimization (SMO)?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">SMO is the process of improving your brand’s presence on social media platforms by optimizing content, increasing engagement, and driving traffic to your website. It helps boost brand awareness and improve conversions.
+
+              </div>
+          </div>
+
+          <div class="faq-item">
+              <div class="faq-question">
+                How does SMO benefit my business?
+                  <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">SMO helps businesses by increasing visibility, building brand credibility, improving audience engagement, and driving more organic traffic. It also enhances customer relationships through active social interactions.
+
+              </div>
+          </div>
+
+          <div class="faq-item">
+              <div class="faq-question">
+                Which platforms should I focus on for SMO?
+                  <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">The best platforms depend on your business goals and target audience. Commonly used platforms include Facebook, Instagram, Twitter, LinkedIn, Pinterest, and YouTube. A well-planned SMO strategy tailors content for each platform.
+
+              </div>
+          </div>
+
+          <div class="faq-item">
+              <div class="faq-question">
+                What are some key SMO strategies?
+                  <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">Some effective SMO strategies include:
+
+                Creating high-quality and shareable content.
+                Using relevant hashtags and keywords.
+                Engaging with followers through comments and messages.
+                Posting consistently at optimal times.
+                Running contests, polls, and giveaways.</div>
+          </div>
+
+          <div class="faq-item">
+              <div class="faq-question">
+                How long does it take to see results from SMO?
+                  <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">SMO is a long-term strategy, and results vary based on consistency, content quality, and audience engagement. Typically, you may start seeing improvements in engagement and traffic within a few months, but significant growth takes time and ongoing effort.
+              </div>
+          </div>
+
+          <div class="faq-item">
+              <div class="faq-question">
+                How can I measure the success of my SMO efforts?
+                  <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">You can track success using key performance indicators (KPIs) like engagement rate, follower growth, website traffic from social media, post reach, and conversion rates. Tools like Google Analytics, Facebook Insights, and Instagram Analytics can help.
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+    <!-- Footer -------------------------------------------->
+    <footer>
+      <div class="footer">
+        <div class="footer-left">
+          <img src="images/Logo2 (1).png" width="100" height="100" alt="">
+          <p>WingsStars is a digital marketing agency that specializes in web development, social media optimization, UI/UX design, search engine optimization, and influencer marketing.
+          </p>
+        </div>
+        <div class="footer-right">
+         <ul>
+          <li>Website Development</li>
+          <li>Search Engine Optimization</li>
+          <li>Social Media Optimization</li>
+          <li>Content Marketing</li>
+         </ul>
+        </div>
+      </div>
+      <p>&copy; 2025 WIngsstars. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item) => {
+  item.addEventListener("click", () => {
+      // Toggle answer visibility
+      const answer = item.querySelector(".faq-answer");
+      answer.style.display = answer.style.display === "block" ? "none" : "block";
+
+      // Change the + to - when opened
+      const icon = item.querySelector(".faq-icon");
+      icon.textContent = icon.textContent === "+" ? "-" : "+";
+  });
+});
+});
+
+</script>
+</body>
+</html>

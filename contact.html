@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - WingsStars</title>
+   <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fd;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    background-color:black;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    padding: 25px 45px;
+}
+
+.logo {
+    width: 140px;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover, .menu a.active {
+    color: #3f51b5;
+}
+
+.btn-get-started {
+    background-color: #0a1172;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-get-started:hover {
+    background-color: #303f9f;
+    transform: translateY(-3px);
+}
+
+header {
+    text-align: center;
+    padding: 60px 0 40px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #3f51b5 0%, #5c6bc0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 1s ease forwards;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: black;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+}
+
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 40px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.contact-wrapper{
+    flex-direction: row;
+    gap: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-form {
+    flex: 2;
+    min-width: 300px;
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #3f51b5;
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #3f51b5;
+    animation: expandWidth 1.5s ease forwards;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    animation: fadeInLeft 0.6s ease forwards;
+}
+
+.info-item:nth-child(1) { animation-delay: 0.1s; }
+.info-item:nth-child(2) { animation-delay: 0.2s; }
+.info-item:nth-child(3) { animation-delay: 0.3s; }
+.info-item:nth-child(4) { animation-delay: 0.4s; }
+
+.info-item:hover {
+    transform: translateX(5px);
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(63, 81, 181, 0.1);
+    border-radius: 50%;
+    font-size: 20px;
+    color: #3f51b5;
+}
+
+.info-content h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.info-content p, .info-content a {
+    color: #666;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.info-content a:hover {
+    color: #3f51b5;
+    text-decoration: underline;
+}
+
+form {
+    opacity: 0;
+    animation: fadeInRight 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f8f9fd;
+    color: #333;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #3f51b5;
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+button {
+    background: #0a1172;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-block;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    background-color: #303f9f;
+}
+
+
+.testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 50px 0;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.testimonial:before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 80px;
+    color: rgba(63, 81, 181, 0.1);
+    font-family: Georgia, serif;
+}
+
+.testimonial p {
+    color: #555;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.testimonial-author {
+    color: #333;
+    font-weight: bold;
+    text-align: right;
+}
+
+.cta-section {
+    text-align: center;
+    margin: 60px 0 30px;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.cta-section h2 {
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    background: linear-gradient(90deg, #3f51b5 0%, #5c6bc0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-section h2:after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+}
+
+.cta-text {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+}
+
+.floating-dots {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(17, 42, 188, 0.1);
+    z-index: -1;
+}
+
+.dot1 {
+    top: 30%;
+    left: 5%;
+    animation: float 3s ease-in-out infinite;
+}
+
+.dot2 {
+    top: 40%;
+    right: 10%;
+    width: 35px;
+    height: 35px;
+    animation: float 2s ease-in-out infinite;
+}
+
+.dot3 {
+    bottom: 15%;
+    right: 5%;
+    animation: float 5s ease-in-out infinite 1s;
+}
+
+.dot4 {
+    bottom: 30%;
+    left: 8%;
+    width: 25px;
+    height: 25px;
+    animation: float 4s ease-in-out infinite 2s;
+}
+
+
+/* Footer ---------------------------------------*/
+footer {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #34495e;
+  }
+  
+  /* Footer Left Section */
+  .footer-left {
+    flex: 1;
+    min-width: 250px;
+    margin-right: 110px;
+  }
+  
+  .footer-left img {
+    margin-bottom: 17px;
+    margin-left: 215px;
+    margin-top: 10px;
+   
+  }
+  
+  .footer-left p {
+    font-size: 15px;
+    line-height: 1.1;
+    color: white;
+  }
+  
+  /* Footer Right Section */
+  .footer-right {
+    flex: 1;
+    min-width: 200px;
+    margin-top: 56px;
+    margin-left: 55px;
+  }
+  
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-right ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #ecf0f1;
+  }
+  
+  .footer-right ul li:hover {
+    color: #0d28a1;
+    cursor: pointer;
+  }
+  
+  footer p{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(25px);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 50px;
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive design */
+    @media only screen and (max-width: 581px) {
+        .navbar {
+        flex-direction: column;
+        text-align: center;
+        margin-left: 30px;
+        gap: 30px;
+    }
+   nav{
+        gap: 30px;
+   }
+    
+    .nav-links {
+      display: flex;
+      margin-right: 47px;
+    gap: 0.7rem;
+    }
+    .nav-links a{
+      font-size: 1.1rem;
+    }
+
+
+    .menu {
+        gap: 15px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .card {
+        padding: 25px;
+    }
+    
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    
+        .map-container {
+            height: 300px;
+        }
+    }
+    
+   </style>
+</head>
+<body>
+    <div class="floating-dots dot1"></div>
+    <div class="floating-dots dot2"></div>
+    <div class="floating-dots dot3"></div>
+    <div class="floating-dots dot4"></div>
+    <nav>
+        <img src="images/Logo2 (1).png" WingsStars Logo" class="logo">
+        
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="Blog.html">Blog</a>
+        </div>
+        
+        <button class="btn-get-started">Get Started</button>
+    </nav>
+    
+    <div class="container">
+ 
+        
+        <header>
+            <h1>Let's Start Something Great</h1>
+            <p class="subtitle">Ready to elevate your digital marketing strategy? Connect with our team of experts and discover how we can help your business soar to new heights.</p>
+        </header>
+        
+        <div class="card">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h3>Our Location</h3>
+                            <p>123 Marketing Avenue, Suite 500<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h3>Email Us</h3>
+                            <a href="mailto:hello@wingstars.com">hello@wingstars.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h3>Call Us</h3>
+                            <p>+1 (555) 789-4563</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-content">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 9AM - 6PM<br>Saturday: By appointment<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">What service are you interested in?</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="seo">Search Engine Optimization</option>
+                                <option value="ppc">Website Development</option>
+                                <option value="social">Social Media Marketing</option>
+                                <option value="content">Influencer Marketing</option>
+                                <option value="email">Email Marketing</option>
+                                <option value="analytics">Marketing Analytics</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Tell us about your project</label>
+                            <textarea id="message" name="message" placeholder="Share your goals, challenges, and what you're looking to achieve..." required></textarea>
+                        </div>
+                        
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="testimonial">
+            <p>"WingsStars transformed our digital presence and marketing strategy. Their team not only helped us increase our online visibility but also provided measurable results that directly impacted our bottom line. Their approach is data-driven, creative, and completely aligned with our business objectives."</p>
+            <div class="testimonial-author">— Nikita, CEO of WingsStars</div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Marketing That Works, Results That Matter</h2>
+            <div class="cta-text">
+                <p>At WingsStars, we believe effective digital marketing is about more than just attracting visitors—it's about converting them into loyal customers. Our team of experts develops customized strategies tailored to your unique business challenges and growth objectives.</p>
+                <p>Whether you're looking to increase brand awareness, generate quality leads, or optimize your conversion rates, we're here to help you achieve measurable results through strategic, data-driven marketing solutions.</p>
+            </div>
+            <button>Schedule a Strategy Session</button>
+        </div>
+        
+     
+    </div>
+           <!-- Footer -------------------------------------------->
+           <footer>
+            <div class="footer">
+              <div class="footer-left">
+                <img src="images/Logo2 (1).png" width="100" height="100" alt="">
+                <p>WingsStars is a digital marketing agency that specializes in web development, social media optimization, UI/UX design, search engine optimization, and influencer marketing.
+                </p>
+              </div>
+              <div class="footer-right">
+               <ul>
+                <li>Website Development</li>
+                <li>Search Engine Optimization</li>
+                <li>Social Media Optimization</li>
+                <li>Content Marketing</li>
+               </ul>
+              </div>
+            </div>
+            <p><p>&copy; 2025 WIngsstars. All Rights Reserved.</p></p>
+          </footer>
+</body>
+</html>
